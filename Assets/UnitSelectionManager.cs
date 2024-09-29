@@ -85,7 +85,28 @@ public class UnitSelectionManager : MonoBehaviour
         }
     }
 
-    private void DeselectAllUnits()
+
+    public void DragSelect(GameObject unit)
+    {
+        Debug.Log("DragSelect");
+        // SelectedUnits.Add(unit);
+        // TriggerSelectionIndicator(unit, true);
+        // EnableUnitMovement(unit, true);
+        if (!SelectedUnits.Contains(unit))
+        {
+            SelectedUnits.Add(unit);
+            TriggerSelectionIndicator(unit, true);
+            EnableUnitMovement(unit, true);
+        }
+        // else
+        // {
+        //     EnableUnitMovement(unit, false);
+        //     TriggerSelectionIndicator(unit, false);
+        //     SelectedUnits.Remove(unit);
+        // }
+    }
+
+    public void DeselectAllUnits()
     {
         foreach (GameObject unit in SelectedUnits)
         {
@@ -124,7 +145,6 @@ public class UnitSelectionManager : MonoBehaviour
     {
         unit.GetComponent<UnitMovement>().enabled = shouldMove;
     }
-
 
     private void TriggerSelectionIndicator(GameObject unit, bool isVisibile)
     {
